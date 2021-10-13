@@ -8,12 +8,10 @@ const EditBook = ({ history }: any) => {
   const { patients, setPatients } = useContext(CrudContext);
   const { id }: any = useParams();
 
-  //use memo
   const findPatient = patients.find(
     (patient: PatientModel) => patient.id === id
   );
 
-  //use callback
   const handleOnSubmit = (patient: PatientModel) => {
     const filteredPatient = patients.filter(
       (patient: PatientModel) => patient.id !== id
