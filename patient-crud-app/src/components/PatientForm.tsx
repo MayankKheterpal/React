@@ -1,10 +1,4 @@
-import React, {
-  ChangeEvent,
-  EventHandler,
-  FormEvent,
-  useCallback,
-  useState,
-} from "react";
+import React, { ChangeEvent, useCallback, useState } from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import { v4 as uuidv4 } from "uuid";
 import { PatientModel } from "./Interface";
