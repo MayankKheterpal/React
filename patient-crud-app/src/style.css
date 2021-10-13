@@ -1,0 +1,67 @@
+h1 {
+  color: rgb(9, 109, 240);
+}
+
+header {
+  text-align: center;
+  margin: 10px;
+}
+.nav {
+  margin-bottom: 20px;
+  font-size: 150%;
+}
+.navlink {
+  padding: 10px;
+  margin: 20px;
+  text-decoration: none;
+  color: white;
+  background-color: rgb(64, 165, 224);
+  text-decoration: none;
+  border: 1px solid black;
+  border-radius: 15px;
+}
+
+.navlink:hover,
+.navlink:active {
+  background-color: rgb(111, 179, 219);
+  color: darkblue;
+}
+
+.main {
+  width: 80%;
+  margin: 20px 40px;
+}
+
+.patient-form {
+  width: 50%;
+  float: left;
+  margin: auto;
+  font-size: 18px;
+}
+
+.book-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.patient {
+  margin: 5px;
+  width: 18rem;
+}
+
+button {
+  margin: 5px;
+}
+
+.error {
+  color: #f21e08;
+  background: #fff0f0;
+  padding: 10px;
+}
+
+.message {
+  color: #0e1b1e;
+  font-size: 25px;
+  margin-left: 10px;
+}
