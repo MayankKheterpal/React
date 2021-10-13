@@ -1,10 +1,10 @@
 import React from "react";
 
-interface CrudContext {
+interface PatientContext {
   patients: any;
   setPatients: (patients: any) => void;
 }
 
-const CrudContext = React.createContext<CrudContext>({} as CrudContext);
+const CrudContext = React.createContext<PatientContext>({} as PatientContext);
 
 export default CrudContext;

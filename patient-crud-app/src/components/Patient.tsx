@@ -2,7 +2,14 @@ import React from "react";
 import { Button, Card } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
-const Patient = ({ id, first_name, last_name, handleDelete }: any) => {
+interface Props {
+  id: string;
+  first_name: string;
+  last_name: string;
+  handleDelete: (id: string) => void;
+}
+
+const Patient = ({ id, first_name, last_name, handleDelete }: Props) => {
   const history = useHistory();
   return (
     <Card className="patient">

@@ -1,4 +1,4 @@
-export interface IValues {
+export interface PatientModel {
   id: string;
   first_name: string;
   last_name: string;

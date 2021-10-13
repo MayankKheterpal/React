@@ -1,14 +1,21 @@
-import React, { useState } from "react";
+import React, {
+  ChangeEvent,
+  EventHandler,
+  FormEvent,
+  useCallback,
+  useState,
+} from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import { v4 as uuidv4 } from "uuid";
-import { IValues } from "./Interface";
+import { PatientModel } from "./Interface";
+import { States } from "../utils/Constatnts";
 
-interface Iprops {
-  patient?: IValues;
-  handleOnSubmit: (patient: IValues) => void;
+interface PropsModel {
+  patient?: PatientModel;
+  handleOnSubmit: (patient: PatientModel) => void;
 }
 
-export default function PatientForm<RouteComponentProps>(props: Iprops) {
+export default function PatientForm<RouteComponentProps>(props: PropsModel) {
   const [patient, setpatient] = useState({
     id: props.patient ? props.patient.id : "",
     first_name: props.patient ? props.patient.first_name : "",
@@ -18,13 +25,13 @@ export default function PatientForm<RouteComponentProps>(props: Iprops) {
     city: props.patient ? props.patient.city : "",
     state: props.patient ? props.patient.state : "",
     date_birth: props.patient ? props.patient.date_birth : "",
-  } as IValues);
+  } as PatientModel);
 
   const [errorMsg, setErrorMsg] = useState("");
   const { first_name, last_name, address, city, state, gender, date_birth } =
     patient;
 
-  const handleOnSubmit = (e: any) => {
+  const handleOnSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     const values = [
       first_name,
@@ -54,14 +61,17 @@ export default function PatientForm<RouteComponentProps>(props: Iprops) {
       setErrorMsg("Fill all the Fields with *");
     }
   };
-  const handleInputChange = (e: any) => {
-    const { name, value } = e.target;
+  const handleInputChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      const { name, value } = e.target;
 
-    setpatient((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
+      setpatient((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    },
+    [setpatient]
+  );
 
   return (
     <div className="patient-form">
@@ -165,33 +175,9 @@ export default function PatientForm<RouteComponentProps>(props: Iprops) {
                 <option value="" disabled hidden>
                   Select one
                 </option>
-                <option value="AL">Alabama</option>
-                <option value="AK">Alaska</option>
-                <option value="AZ">Arizona</option>
-                <option value="AR">Arkansas</option>
-                <option value="CA">California</option>
-                <option value="CO">Colorado</option>
-                <option value="CT">Connecticut</option>
-                <option value="DE">Delaware</option>
-                <option value="DC">District Of Columbia</option>
-                <option value="FL">Florida</option>
-                <option value="GA">Georgia</option>
-                <option value="HI">Hawaii</option>
-                <option value="ID">Idaho</option>
-                <option value="IL">Illinois</option>
-                <option value="IN">Indiana</option>
-                <option value="IA">Iowa</option>
-                <option value="KS">Kansas</option>
-                <option value="KY">Kentucky</option>
-                <option value="LA">Louisiana</option>
-                <option value="ME">Maine</option>
-                <option value="MD">Maryland</option>
-                <option value="MA">Massachusetts</option>
-                <option value="MI">Michigan</option>
-                <option value="MN">Minnesota</option>
-                <option value="MS">Mississippi</option>
-                <option value="MO">Missouri</option>
-                <option value="MT">Montana</option>
+                {States.map((state) => (
+                  <option value={state.value}>{state.name}</option>
+                ))}
               </Form.Control>
             </Form.Group>
           </Col>

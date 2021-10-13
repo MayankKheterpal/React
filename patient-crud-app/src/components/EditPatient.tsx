@@ -1,18 +1,22 @@
 import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
 import PatientForm from "./PatientForm";
-import CrudContext from "../context/CrudContext";
-import { IValues } from "./Interface";
+import CrudContext from "../context/PatientContext";
+import { PatientModel } from "./Interface";
 
 const EditBook = ({ history }: any) => {
   const { patients, setPatients } = useContext(CrudContext);
   const { id }: any = useParams();
 
-  const findPatient = patients.find((patient: IValues) => patient.id === id);
+  //use memo
+  const findPatient = patients.find(
+    (patient: PatientModel) => patient.id === id
+  );
 
-  const handleOnSubmit = (patient: IValues) => {
+  //use callback
+  const handleOnSubmit = (patient: PatientModel) => {
     const filteredPatient = patients.filter(
-      (patient: IValues) => patient.id !== id
+      (patient: PatientModel) => patient.id !== id
     );
     setPatients([patient, ...filteredPatient]);
     history.push("/");

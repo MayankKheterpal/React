@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import PatientForm from "./PatientForm";
-import CrudContext from "../context/CrudContext";
-import { IValues } from "./Interface";
+import CrudContext from "../context/PatientContext";
+import { PatientModel } from "./Interface";
 
 const AddPatient = ({ history }: any) => {
   const { patients, setPatients } = useContext(CrudContext);
-  const handleOnSubmit = (patient: IValues) => {
+  const handleOnSubmit = (patient: PatientModel) => {
     setPatients([patient, ...patients]);
     history.push("/");
   };

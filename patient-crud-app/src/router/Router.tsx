@@ -5,7 +5,7 @@ import AddPatient from "../components/AddPatient";
 import PatientList from "../components/PatientList";
 import EditPatient from "../components/EditPatient";
 import useStorage from "../hooks/useStorage";
-import CrudContext from "../context/CrudContext";
+import PatientContext from "../context/PatientContext";
 
 const Router = () => {
   const [patients, setPatients] = useStorage("patients", []);
@@ -14,13 +14,13 @@ const Router = () => {
       <div>
         <Header />
         <div className="main">
-          <CrudContext.Provider value={{ patients, setPatients }}>
+          <PatientContext.Provider value={{ patients, setPatients }}>
             <Switch>
               <Route component={PatientList} path="/" exact={true} />
               <Route component={AddPatient} path="/add" />
               <Route component={EditPatient} path="/edit/:id" />
             </Switch>
-          </CrudContext.Provider>
+          </PatientContext.Provider>
         </div>
       </div>
     </BrowserRouter>
